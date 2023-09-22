@@ -35,3 +35,5 @@ browser_mod:
 
 Furthermore the card is based and styled to fit my phones dimensions. You will likely have to make adjustments in order to fit your needs. Most likely you will have to adjust the margin and width of the custom volume slider of the card.
 The rest is up to you. I've used scripts for my buttons to do specific things suited for my set up but you could simply call a service or use toggle of an entity if you'd like that. Have fun.
+
+<a href="https://www.buymeacoffee.com/smeen89" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Beer" style="height: 41px !important;width: 174px !important;" ></a>
