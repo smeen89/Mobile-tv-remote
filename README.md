@@ -33,4 +33,5 @@ browser_mod:
     type: ...etc...
 ```
 
+Furthermore the card is based and styled to fit my phones dimensions. You will likely have to make adjustments in order to fit your needs. Most likely you will have to adjust the margin and width of the custom volume slider of the card.
 The rest is up to you. I've used scripts for my buttons to do specific things suited for my set up but you could simply call a service or use toggle of an entity if you'd like that. Have fun.
