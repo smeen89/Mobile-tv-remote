@@ -1,6 +1,6 @@
 type: custom:popup-card
-entity: media_player.lg_webos_smart_tv
-dismissable: true
+entity: media_player.tv_vardagsrum
+dismissable: false
 card:
   type: custom:stack-in-card
   keep:
@@ -19,7 +19,7 @@ card:
           "1 2 3"
       cards:
         - type: custom:button-card
-          entity: script.mediacenter_ner
+          entity: media_player.tv_vardagsrum
           show_icon: false
           show_name: false
           show_state: false
@@ -42,7 +42,7 @@ card:
                   "1 2 3"
               cards:
                 - type: custom:button-card
-                  entity: script.mediacenter_ner
+                  entity: media_player.tv_vardagsrum
                   show_icon: false
                   show_name: false
                   show_state: false
@@ -51,18 +51,25 @@ card:
                   hold_action:
                     action: none
                   styles:
+                    name:
+                      - font-size: 22px
+                      - margin-left: 40px
+                      - font-color: var(--remote-border-stroke)
+                      - font-weight: 300
                     card:
                       - background: transparent
                       - box-shadow: none
                 - type: custom:button-card
-                  entity: script.lg_tv_on_off
+                  entity: media_player.tv_vardagsrum
                   show_icon: true
                   show_name: false
                   show_state: false
                   aspect_ratio: 1/1
                   size: 60%
+                  icon: mdi:power
                   tap_action:
-                    action: toggle
+                    action: call-service
+                    service: script.android_tv_on_off
                   hold_action:
                     action: none
                   styles:
@@ -70,11 +77,11 @@ card:
                       - background: transparent
                       - border-radius: 100%
                       - box-shadow: none
-                      - border: 1px solid rgb(47, 47 ,47, 0.9);
+                      - border: 1px solid var(--remote-border-stroke)
                     icon:
-                      - color: rgb(47, 47 ,47)
+                      - color: var(--remote-on-off-color)
                 - type: custom:button-card
-                  entity: script.mediacenter_ner
+                  entity: media_player.tv_vardagsrum
                   show_icon: false
                   show_name: false
                   show_state: false
@@ -98,7 +105,7 @@ card:
                   type: grid
                   cards:
                     - type: custom:button-card
-                      entity: script.mediacenter_ner
+                      entity: media_player.tv_vardagsrum
                       show_icon: false
                       show_name: false
                       show_state: false
@@ -112,14 +119,23 @@ card:
                           - background: transparent
                           - box-shadow: none
                     - type: custom:button-card
-                      entity: script.mediacenter_upp
+                      entity: media_player.tv_vardagsrum
                       show_icon: true
                       show_name: false
                       show_state: false
                       aspect_ratio: 1/1
                       size: 60%
+                      icon: mdi:chevron-up
                       tap_action:
-                        action: toggle
+                        action: call-service
+                        service: remote.send_command
+                        target:
+                          entity_id: remote.tv_vardagsrum
+                        data:
+                          num_repeats: 1
+                          delay_secs: 0.4
+                          hold_secs: 0
+                          command: DPAD_UP
                       hold_action:
                         action: none
                       styles:
@@ -127,7 +143,7 @@ card:
                           - background: transparent
                           - box-shadow: none
                         icon:
-                          - color: white
+                          - color: var(--remote-icon-color)
                     - type: custom:button-card
                       entity: script.mediacenter_ner
                       show_icon: false
@@ -143,14 +159,23 @@ card:
                           - background: transparent
                           - box-shadow: none
                     - type: custom:button-card
-                      entity: script.mediacenter_hoger_2
+                      entity: media_player.tv_vardagsrum
                       show_icon: true
                       show_name: false
                       show_state: false
                       aspect_ratio: 1/1
                       size: 60%
+                      icon: mdi:chevron-left
                       tap_action:
-                        action: toggle
+                        action: call-service
+                        service: remote.send_command
+                        target:
+                          entity_id: remote.tv_vardagsrum
+                        data:
+                          num_repeats: 1
+                          delay_secs: 0.4
+                          hold_secs: 0
+                          command: DPAD_LEFT
                       hold_action:
                         action: none
                       styles:
@@ -158,36 +183,51 @@ card:
                           - background: transparent
                           - box-shadow: none
                         icon:
-                          - color: white
+                          - color: var(--remote-icon-color)
                     - type: custom:button-card
-                      entity: script.mediacenter_ner
+                      entity: media_player.tv_vardagsrum
                       show_icon: false
                       show_name: false
                       show_state: false
                       aspect_ratio: 1/1
                       tap_action:
-                        action: toggle
+                        action: call-service
+                        service: remote.send_command
+                        target:
+                          entity_id: remote.tv_vardagsrum
+                        data:
+                          num_repeats: 1
+                          delay_secs: 0.4
+                          hold_secs: 0
+                          command: DPAD_CENTER
                       hold_action:
                         action: none
                       styles:
                         card:
-                          - background: >-
-                              linear-gradient(360deg, rgba(65,65,65,1) 0%,
-                              rgba(54,54,54,1) 40%, rgba(47,47,47,1) 100%);
+                          - background: var(--remote-inner-circle-gradient)
                           - border-radius: 100%
                           - box-shadow: none
-                          - border: 2px solid rgb(47, 47, 47);
+                          - border: 1px solid var(--remote-border-stroke);
                         icon:
                           - color: rgb(60, 59, 60)
                     - type: custom:button-card
-                      entity: script.mediacenter_hoger
+                      entity: media_player.tv_vardagsrum
                       show_icon: true
                       show_name: false
                       show_state: false
                       aspect_ratio: 1/1
                       size: 60%
+                      icon: mdi:chevron-right
                       tap_action:
-                        action: toggle
+                        action: call-service
+                        service: remote.send_command
+                        target:
+                          entity_id: remote.tv_vardagsrum
+                        data:
+                          num_repeats: 1
+                          delay_secs: 0.4
+                          hold_secs: 0
+                          command: DPAD_RIGHT
                       hold_action:
                         action: none
                       styles:
@@ -195,9 +235,9 @@ card:
                           - background: transparent
                           - box-shadow: none
                         icon:
-                          - color: white
+                          - color: var(--remote-icon-color)
                     - type: custom:button-card
-                      entity: script.mediacenter_ner
+                      entity: media_player.tv_vardagsrum
                       show_icon: false
                       show_name: false
                       show_state: false
@@ -211,14 +251,23 @@ card:
                           - background: transparent
                           - box-shadow: none
                     - type: custom:button-card
-                      entity: script.mediacenter_ner_2
+                      entity: media_player.tv_vardagsrum
                       show_icon: true
                       show_name: false
                       show_state: false
                       aspect_ratio: 1/1
                       size: 60%
+                      icon: mdi:chevron-down
                       tap_action:
-                        action: toggle
+                        action: call-service
+                        service: remote.send_command
+                        target:
+                          entity_id: remote.tv_vardagsrum
+                        data:
+                          num_repeats: 1
+                          delay_secs: 0.4
+                          hold_secs: 0
+                          command: DPAD_DOWN
                       hold_action:
                         action: none
                       styles:
@@ -226,9 +275,9 @@ card:
                           - background: transparent
                           - box-shadow: none
                         icon:
-                          - color: white
+                          - color: var(--remote-icon-color)
                     - type: custom:button-card
-                      entity: script.mediacenter_ner
+                      entity: media_player.tv_vardagsrum
                       show_icon: false
                       show_name: false
                       show_state: false
@@ -242,11 +291,193 @@ card:
                           - background: transparent
                           - box-shadow: none
                   columns: 3
-              style: |
-                ha-card {
-                  background: radial-gradient(circle, rgba(75,75,75,1) 0%, rgba(54,54,54,1) 10%, rgba(54,54,54,1) 100%);
-                  border-radius: 100%
-                        }
+              card_mod:
+                style: |
+                  ha-card {
+                    background: var(--remote-outer-circle-gradient);
+                    border-radius: 100%;
+                    border: 2px solid var(--remote-border-stroke);
+                          }
+            - type: custom:layout-card
+              layout_type: custom:grid-layout
+              layout_options:
+                grid-template-columns: 15% 30% 10% 30% 15%
+                grid-template-rows: auto
+                grid-template-areas: |
+                  "1 2 3 4 5"
+              cards:
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: false
+                  show_name: false
+                  show_state: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: transparent
+                      - box-shadow: none
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: true
+                  show_name: false
+                  show_state: false
+                  aspect_ratio: 1/1
+                  icon: mdi:arrow-u-left-top-bold
+                  size: 40%
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    target:
+                      entity_id: remote.tv_vardagsrum
+                    data:
+                      num_repeats: 1
+                      delay_secs: 0.4
+                      hold_secs: 0
+                      command: BACK
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: var(--remote-button-gradient)
+                      - border-radius: 100%
+                      - box-shadow: none
+                      - border: 1px solid var(--remote-border-stroke)
+                    icon:
+                      - color: var(--remote-icon-color)
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: false
+                  show_name: false
+                  show_state: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: transparent
+                      - box-shadow: none
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: true
+                  show_name: false
+                  show_state: false
+                  aspect_ratio: 1/1
+                  icon: mdi:home
+                  size: 40%
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    target:
+                      entity_id: remote.tv_vardagsrum
+                    data:
+                      num_repeats: 1
+                      delay_secs: 0.4
+                      hold_secs: 0
+                      command: HOME
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: var(--remote-button-gradient)
+                      - border-radius: 100%
+                      - box-shadow: none
+                      - border: 1px solid var(--remote-border-stroke)
+                    icon:
+                      - color: var(--remote-icon-color)
+            - type: custom:layout-card
+              layout_type: custom:grid-layout
+              layout_options:
+                grid-template-columns: 15% 30% 10% 30% 15%
+                grid-template-rows: auto
+                grid-template-areas: |
+                  "1 2 3 4 5"
+              cards:
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: false
+                  show_name: false
+                  show_state: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: transparent
+                      - box-shadow: none
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: true
+                  show_name: false
+                  show_state: false
+                  aspect_ratio: 1/1
+                  size: 40%
+                  icon: mdi:play-pause
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    target:
+                      entity_id: remote.tv_vardagsrum
+                    data:
+                      num_repeats: 1
+                      delay_secs: 0.4
+                      hold_secs: 0
+                      command: MEDIA_PLAY_PAUSE
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: var(--remote-button-gradient)
+                      - border-radius: 100%
+                      - box-shadow: none
+                      - border: 1px solid var(--remote-border-stroke)
+                    icon:
+                      - color: var(--remote-icon-color)
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: false
+                  show_name: false
+                  show_state: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: transparent
+                      - box-shadow: none
+                - type: custom:button-card
+                  entity: media_player.tv_vardagsrum
+                  show_icon: true
+                  show_name: false
+                  show_state: false
+                  aspect_ratio: 1/1
+                  size: 40%
+                  icon: mdi:volume-variant-off
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    target:
+                      entity_id: remote.tv_vardagsrum
+                    data:
+                      num_repeats: 1
+                      delay_secs: 0.4
+                      hold_secs: 0
+                      command: VOLUME_MUTE
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - background: var(--remote-button-gradient)
+                      - border-radius: 100%
+                      - box-shadow: none
+                      - border: 1px solid var(--remote-border-stroke)
+                    icon:
+                      - color: var(--remote-icon-color)
             - type: custom:layout-card
               layout_type: custom:grid-layout
               layout_options:
@@ -269,27 +500,34 @@ card:
                       - background: transparent
                       - box-shadow: none
                 - type: custom:button-card
-                  entity: script.mediacenter_return
+                  entity: media_player.tv_vardagsrum
                   show_icon: true
                   show_name: false
                   show_state: false
                   aspect_ratio: 1/1
                   size: 40%
+                  icon: mdi:nintendo-switch
                   tap_action:
-                    action: toggle
+                    action: call-service
+                    service: androidtv.adb_command
+                    data:
+                      command: >-
+                        adb shell am start -a android.intent.action.VIEW -d
+                        content://android.media.tv/passthrough/com.tcl.tvinput%2F.passthroughinput.TvPassThroughService%2FHW1413744384
+                    target:
+                      entity_id: media_player.android_tv_192_168_50_61
                   hold_action:
                     action: none
                   styles:
                     card:
-                      - background: >-
-                          linear-gradient(180deg, rgba(75,75,75,1) 0%,
-                          rgba(54,54,54,1) 30%, rgba(47,47,47,1) 100%);
+                      - background: var(--remote-button-gradient)
                       - border-radius: 100%
                       - box-shadow: none
+                      - border: 1px solid var(--remote-border-stroke)
                     icon:
-                      - color: white
+                      - color: var(--remote-icon-color)
                 - type: custom:button-card
-                  entity: script.mediacenter_ner
+                  entity: media_player.tv_vardagsrum
                   show_icon: false
                   show_name: false
                   show_state: false
@@ -302,180 +540,38 @@ card:
                       - background: transparent
                       - box-shadow: none
                 - type: custom:button-card
-                  entity: script.mediacenter_home_2
+                  entity: media_player.tv_vardagsrum
                   show_icon: true
                   show_name: false
                   show_state: false
                   aspect_ratio: 1/1
                   size: 40%
+                  icon: mdi:laptop
                   tap_action:
-                    action: toggle
+                    action: call-service
+                    service: androidtv.adb_command
+                    data:
+                      command: >-
+                        adb shell am start -a android.intent.action.VIEW -d
+                        content://android.media.tv/passthrough/com.tcl.tvinput%2F.passthroughinput.TvPassThroughService%2FHW1413744128
+                    target:
+                      entity_id: media_player.android_tv_192_168_50_61
                   hold_action:
                     action: none
                   styles:
                     card:
-                      - background: >-
-                          linear-gradient(180deg, rgba(75,75,75,1) 0%,
-                          rgba(54,54,54,1) 30%, rgba(47,47,47,1) 100%);
+                      - background: var(--remote-button-gradient)
                       - border-radius: 100%
                       - box-shadow: none
+                      - border: 1px solid var(--remote-border-stroke)
                     icon:
-                      - color: white
-            - type: custom:layout-card
-              layout_type: custom:grid-layout
-              layout_options:
-                grid-template-columns: 15% 30% 10% 30% 15%
-                grid-template-rows: auto
-                grid-template-areas: |
-                  "1 2 3 4 5"
-              cards:
-                - type: custom:button-card
-                  entity: script.mediacenter_ner
-                  show_icon: false
-                  show_name: false
-                  show_state: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: transparent
-                      - box-shadow: none
-                - type: custom:button-card
-                  entity: script.mediacenter_play_pause
-                  show_icon: true
-                  show_name: false
-                  show_state: false
-                  aspect_ratio: 1/1
-                  size: 40%
-                  tap_action:
-                    action: toggle
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: >-
-                          linear-gradient(180deg, rgba(75,75,75,1) 0%,
-                          rgba(54,54,54,1) 30%, rgba(47,47,47,1) 100%);
-                      - border-radius: 100%
-                      - box-shadow: none
-                    icon:
-                      - color: white
-                - type: custom:button-card
-                  entity: script.mediacenter_ner
-                  show_icon: false
-                  show_name: false
-                  show_state: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: transparent
-                      - box-shadow: none
-                - type: custom:button-card
-                  entity: script.mediacenter_mute
-                  show_icon: true
-                  show_name: false
-                  show_state: false
-                  aspect_ratio: 1/1
-                  size: 40%
-                  tap_action:
-                    action: toggle
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: >-
-                          linear-gradient(180deg, rgba(75,75,75,1) 0%,
-                          rgba(54,54,54,1) 30%, rgba(47,47,47,1) 100%);
-                      - border-radius: 100%
-                      - box-shadow: none
-                    icon:
-                      - color: white
-            - type: custom:layout-card
-              layout_type: custom:grid-layout
-              layout_options:
-                grid-template-columns: 15% 30% 10% 30% 15%
-                grid-template-rows: auto
-                grid-template-areas: |
-                  "1 2 3 4 5"
-              cards:
-                - type: custom:button-card
-                  entity: script.mediacenter_ner
-                  show_icon: false
-                  show_name: false
-                  show_state: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: transparent
-                      - box-shadow: none
-                - type: custom:button-card
-                  entity: script.byt_kalla_till_tv
-                  show_icon: true
-                  show_name: false
-                  show_state: false
-                  aspect_ratio: 1/1
-                  size: 40%
-                  tap_action:
-                    action: toggle
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: >-
-                          linear-gradient(180deg, rgba(75,75,75,1) 0%,
-                          rgba(54,54,54,1) 30%, rgba(47,47,47,1) 100%);
-                      - border-radius: 100%
-                      - box-shadow: none
-                    icon:
-                      - color: white
-                - type: custom:button-card
-                  entity: script.mediacenter_ner
-                  show_icon: false
-                  show_name: false
-                  show_state: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: transparent
-                      - box-shadow: none
-                - type: custom:button-card
-                  entity: script.laptop_pa_tv
-                  show_icon: true
-                  show_name: false
-                  show_state: false
-                  aspect_ratio: 1/1
-                  size: 40%
-                  tap_action:
-                    action: toggle
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - background: >-
-                          linear-gradient(180deg, rgba(75,75,75,1) 0%,
-                          rgba(54,54,54,1) 30%, rgba(47,47,47,1) 100%);
-                      - border-radius: 100%
-                      - box-shadow: none
-                    icon:
-                      - color: white
+                      - color: var(--remote-icon-color)
     - type: custom:my-slider-v2
       entity: media_player.onkyo_receiver
       vertical: false
       styles:
         card:
           - height: 60px
-          - width: 310px
           - margin-left: 30px
           - margin-right: 30px
         container:
@@ -490,14 +586,12 @@ card:
           - height: 100%
           - position: relative
           - background: >-
-              linear-gradient(180deg, rgba(37,37,37, 0.15) 0%,
-              rgba(47,47,47,0.1) 96%, rgba(255,255,255,0.1) 100%)
+              linear-gradient(180deg, rgba(7,7,7, 0.15) 0%, rgba(17,17,17,0.1)
+              100%)
           - box-shadow: inset 0px 10px 9px -10px rgb(0,0,0,0.25)
         progress:
-          - height: 98%
-          - background: >-
-              linear-gradient(180deg, rgba(65,65,65,1) 0%, rgba(54,54,54,1) 40%,
-              rgba(47,47,47,1) 100%)
+          - height: 100%
+          - background: var(--remote-button-gradient)
           - position: absolute
           - width: 100%
         thumb:
@@ -513,7 +607,7 @@ card:
             box-shadow: none;
           }
     - type: custom:button-card
-      entity: script.mediacenter_ner
+      entity: media_player.tv_vardagsrum
       show_icon: false
       show_name: false
       show_state: false
@@ -529,6 +623,8 @@ card:
     style: |
       ha-card {
         border-radius: 40px;
-        background: linear-gradient(180deg, rgba(207,207,209,1) 0%, rgba(122,122,126,1) 100%);
+        background: var(--remote-background-gradient);
       }
-style: '--mdc-theme-surface: transparent;'
+style: |-
+  --mdc-theme-surface: transparent;
+  --popup-outline: none !important;
